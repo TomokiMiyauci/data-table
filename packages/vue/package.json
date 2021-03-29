@@ -1,0 +1,34 @@
+{
+  "name": "@miyauci/vue-data-table",
+  "version": "0.0.0",
+  "main": "./dist/vue-data-table.umd.js",
+  "module": "./dist/vue-data-table.es.js",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-data-table.es.js",
+      "require": "./dist/vue-data-table.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "lint:tsc": "vue-tsc",
+    "build": "yarn build:lib && yarn build:types",
+    "build:lib": "vite build",
+    "build:types": "tsc src/index.ts --lib ESNEXT,DOM --outDir dist --types vite/client,./src/shims-vue --emitDeclarationOnly -d",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.0.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.9",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "vite": "^2.1.3",
+    "vue-tsc": "^0.0.8"
+  },
+  "files": [
+    "dist"
+  ]
+}
