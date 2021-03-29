@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "./dist/vue-data-table.umd.js",
   "module": "./dist/vue-data-table.es.js",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "exports": {
     ".": {
