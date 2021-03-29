@@ -21,7 +21,6 @@ module.exports = {
         ':bug:',
         ':ambulance:',
         ':penguin:',
-        ':apple:',
         ':checkered_flag:',
         ':robot:',
         ':green_ale:',
@@ -84,12 +83,10 @@ module.exports = {
         ':mag:',
         ':wheel-of-dharma:',
         ':label:',
-        ':triangular_flag_on_post:'
+        ':triangular_flag_on_post:',
+        ':page_facing_up:'
       ]
     ],
     'header-max-length': [2, 'always', 75]
   }
-
-
-
 }
