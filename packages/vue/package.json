@@ -1,9 +1,9 @@
 {
   "name": "@miyauci/vue-data-table",
-  "version": "1.0.0-beta.2",
-  "main": "./dist/vue-data-table.umd.js",
-  "module": "./dist/vue-data-table.es.js",
-  "types": "./dist/index.d.ts",
+  "version": "1.0.0-beta.3",
+  "main": "dist/vue-data-table.umd.js",
+  "module": "dist/vue-data-table.es.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "exports": {
     ".": {
@@ -22,7 +22,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@miyauci/data-table-core": "^1.0.0-beta.2",
+    "@miyauci/data-table-core": "1.0.0-beta.3",
     "rambda": "^6.7.0",
     "vue": "^3.0.9",
     "vue-i18n": "^9.0.0"
