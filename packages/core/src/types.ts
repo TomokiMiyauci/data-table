@@ -3,7 +3,7 @@ interface Header {
   class?: string
   value: string | number
   filterable?: boolean
-  filter?: (val: any, lowerCaseSearch: string) => boolean
+  filter?: (val: unknown, lowerCaseSearch: string) => boolean
   sortable?: boolean
 }
 
