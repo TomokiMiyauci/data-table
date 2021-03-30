@@ -1,11 +1,6 @@
-import { Plugin } from 'vue'
-import App from './App.vue'
+export * from './hooks'
+import 'virtual:windi.css'
+export { plugin as default } from './plugin'
+import DataTable from './components/DataTable.vue'
 
-const plugin = (): Plugin => ({
-  install: (app: any) => {
-    app.component('DataTable', App)
-  }
-})
-
-export default plugin
-export { App }
+export { DataTable }
