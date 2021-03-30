@@ -1,14 +1,24 @@
-import { Ref, computed } from 'vue'
 import type { Header, Item } from '@miyauci/data-table-core'
-import { isUndefinedOrTrue, toStringOrNumber } from '@miyauci/data-table-core'
+import {
+  isUndefinedOrTrue,
+  lowerCase,
+  toStringOrNumber
+} from '@miyauci/data-table-core'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 
 type Options = {
   headers: Ref<Header[]>
   items: Ref<Item[]>
-  search: Ref<string | number>
 }
 
-const useFilter = ({ items, headers, search }: Options) => {
+const useFilter = ({
+  items,
+  headers
+}: Options): {
+  items: ComputedRef<Item[]>
+  filter: (search: string | number) => void
+} => {
+  const _search = ref<string | number>('')
   const filterableHeaderValues = computed<Pick<Header, 'value' | 'filter'>[]>(
     () =>
       headers.value
@@ -16,39 +26,39 @@ const useFilter = ({ items, headers, search }: Options) => {
         .map(({ value, filter }) => ({ value, filter }))
   )
 
-  const lowerCaseSearch = computed<string | number>(() =>
-    typeof search.value === 'string' ? search.value.toLowerCase() : search.value
-  )
+  const filter = (search: string | number): void => {
+    const lowerCaseSearch =
+      typeof search === 'string' ? lowerCase(search) : search
+    _search.value = lowerCaseSearch
+  }
 
   const filteredItems = computed<Item[]>(() => {
-    if (!lowerCaseSearch.value || !filterableHeaderValues.value.length)
+    if (!_search.value || !filterableHeaderValues.value.length)
       return items.value
     return items.value.filter((item) =>
       filterableHeaderValues.value.some(({ value: v, filter }) => {
         const value = item[v]
         if (typeof filter === 'function') {
-          return filter(
-            value,
-            toStringOrNumber(lowerCaseSearch.value, 'string')
-          )
+          return filter(value, toStringOrNumber(_search.value, 'string'))
         }
         if (typeof value === 'string') {
           return value
             .toLowerCase()
-            .includes(toStringOrNumber(lowerCaseSearch.value, 'string'))
+            .includes(toStringOrNumber(_search.value, 'string'))
         } else if (typeof value === 'number') {
-          return value === lowerCaseSearch.value
+          return value === _search.value
         } else if (value instanceof Date) {
           return value
             .toLocaleString()
-            .includes(toStringOrNumber(lowerCaseSearch.value, 'string'))
+            .includes(toStringOrNumber(_search.value, 'string'))
         }
       })
     )
   })
 
   return {
-    items: filteredItems
+    items: filteredItems,
+    filter
   }
 }
 
