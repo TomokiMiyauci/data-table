@@ -1,3 +1,4 @@
-import App from './App'
+import DataTable from './components/DataTable'
+export * from './hooks'
 
-export default App
+export { DataTable }
