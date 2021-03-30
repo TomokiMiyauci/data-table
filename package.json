@@ -8,15 +8,20 @@
   ],
   "scripts": {
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "multi-semantic-release --ignore-packages=examples/*"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "commitizen": "^4.2.3",
     "commitlint-config-gitmoji": "^2.2.3",
     "cz-emoji": "^1.3.1",
+    "eslint": "^7.23.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^5.2.0",
     "multi-semantic-release": "^2.8.0",
     "prettier": "^2.2.1",
@@ -30,7 +35,8 @@
     "cz-emoji": {
       "scopes": [
         "core",
-        "vue"
+        "vue",
+        "react"
       ]
     }
   }
