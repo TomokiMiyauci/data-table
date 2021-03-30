@@ -31,4 +31,5 @@ const toStringOrNumber = <
 const isUndefinedOrTrue = (val: boolean | undefined): boolean =>
   typeof val === 'undefined' || val
 
-export { objectOrPrimitive, isUndefinedOrTrue, toStringOrNumber }
+const lowerCase = (val: string): string => val.toLowerCase()
+export { objectOrPrimitive, isUndefinedOrTrue, toStringOrNumber, lowerCase }
