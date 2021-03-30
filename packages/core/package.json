@@ -12,7 +12,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "commit": "yarn --cwd ../.. cz",
+    "commit": "yarn --cwd ../.. commit",
+    "cz": "yarn commit",
     "build": "rollup -c rollup.config.ts"
   },
   "devDependencies": {
@@ -24,5 +25,8 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "rambda": "^6.7.0"
   }
 }

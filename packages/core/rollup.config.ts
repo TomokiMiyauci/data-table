@@ -17,6 +17,7 @@ const options = {
       sourcemap: true
     }
   ],
+  external: ['rambda'],
   plugins: [typescript()]
 }
 
