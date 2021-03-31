@@ -19,7 +19,9 @@
     "build": "yarn build:lib && yarn build:types",
     "build:lib": "vite build",
     "build:types": "tsc src/index.ts --jsx react --lib ESNEXT,DOM --outDir dist --types vite/client --emitDeclarationOnly -d --esModuleInterop",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "echo test",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@miyauci/data-table-core": "1.0.0-beta.3",

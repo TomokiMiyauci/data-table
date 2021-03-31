@@ -9,7 +9,9 @@
   "scripts": {
     "commit": "cz",
     "prepare": "husky install",
-    "release": "multi-semantic-release --ignore-packages=examples/*"
+    "release": "multi-semantic-release --ignore-packages=examples/*",
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",

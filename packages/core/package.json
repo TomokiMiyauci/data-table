@@ -16,7 +16,9 @@
     "cz": "yarn commit",
     "lint:script": "eslint src/*",
     "lint": "yarn lint:script",
-    "build": "rollup -c rollup.config.ts"
+    "build": "rollup -c rollup.config.ts",
+    "test": "echo test",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "rollup": "^2.43.1",
