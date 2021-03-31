@@ -1,3 +1,9 @@
+# [v1.0.0-beta.2](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/react-data-table@1.0.0-beta.1...@miyauci/react-data-table@1.0.0-beta.2) (2021-03-31)
+
+## ✨ New Features
+- [`f698889`](https://github.com/TomokiMiyauci/data-table/commit/f698889)  (vue) Add useFilter and useSort hooks 
+- [`cc29479`](https://github.com/TomokiMiyauci/data-table/commit/cc29479)  (vue) Add pagination hooks
+
 # [v1.0.0-beta.3](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/data-table-core@1.0.0-beta.2...@miyauci/data-table-core@1.0.0-beta.3) (2021-03-30)
 
 ## ✨ New Features
