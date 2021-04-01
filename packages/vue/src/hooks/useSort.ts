@@ -1,57 +1,115 @@
-import type { Item, Order } from '@miyauci/data-table-core'
+import type { Item, Order, StringOrNumber } from '@miyauci/data-table-core'
 import { objectOrPrimitive } from '@miyauci/data-table-core'
-import { reverse } from 'rambda'
-import { sortBy as _sortBy } from 'rambda'
-import { computed, Ref, ref } from 'vue'
+import { Ord, reverse, sortBy as _sortBy } from 'rambda'
+import { computed, ComputedRef, ref } from 'vue'
 
-const getNextState = (type: Order | ''): Order | '' =>
+type OrderState = Order | ''
+
+const getNextState = (type: OrderState): OrderState =>
   type === '' ? 'ASC' : type === 'ASC' ? 'DESC' : ''
 
-const _getState = (sortBy: Ref<string | number>, type: Ref<Order | ''>) => (
-  key: string | number
-): Order | '' => {
-  if (key !== sortBy.value) return ''
-  return type.value
+const sortFn = (key: StringOrNumber) => (item: Item): Ord =>
+  objectOrPrimitive(item[key])
+
+const _getState = (sortBy: StringOrNumber, type: OrderState) => (
+  key: StringOrNumber
+): OrderState => {
+  if (key !== sortBy) return ''
+
+  return type
 }
 
-const useSort = (items: Ref<Item[]>) => {
-  const _type = ref<Order | ''>('')
-  const sortBy = ref<string | number>('')
-  const sortedItems = computed(() => {
-    if (!sortBy.value) return items.value
+const simpleSort = (
+  items: readonly Item[],
+  type: OrderState
+): readonly Item[] => (type === 'DESC' ? reverse(items) : items)
 
-    const sorted = _sortBy<Item>((item) => {
-      return objectOrPrimitive(item[sortBy.value])
-    }, items.value)
-    return _type.value === 'ASC' ? sorted : reverse(sorted)
-  })
-
-  const sort = (key: string | number, type?: Order) => {
-    if (sortBy.value === key) {
-      _type.value = type || getNextState(_type.value)
-      sortBy.value = _type.value ? key : ''
-    } else {
-      sortBy.value = key
-      _type.value = type || 'ASC'
+const getNextSortMap = ({
+  key,
+  prevKey,
+  type,
+  prevType
+}: {
+  key: StringOrNumber
+  prevKey: StringOrNumber
+  type?: OrderState
+  prevType: OrderState
+}): {
+  type: OrderState
+  key: StringOrNumber
+} => {
+  if (prevKey === key) {
+    return {
+      type: type || getNextState(prevType),
+      key: prevType ? key : ''
     }
+  } else {
+    return {
+      type: type || 'ASC',
+      key
+    }
+  }
+}
 
-    sortMap.value[key] = type
+const sortItems = ({
+  items,
+  type,
+  key
+}: {
+  items: Item[]
+  type: OrderState
+  key: StringOrNumber
+}): readonly Item[] => {
+  if (!key || !type) return items
+
+  const sorted = _sortBy<Item>(sortFn(key), items)
+  return simpleSort(sorted, type)
+}
+
+const useSort = (
+  items: ComputedRef<Item[]>
+): {
+  items: ComputedRef<readonly Item[]>
+  sort: (key: StringOrNumber, type?: OrderState | undefined) => void
+  getState: ComputedRef<(key: StringOrNumber) => OrderState>
+} => {
+  const _type = ref<OrderState>('')
+  const sortBy = ref<StringOrNumber>('')
+  const sortedItems = computed(() =>
+    sortItems({
+      items: items.value,
+      type: _type.value,
+      key: sortBy.value
+    })
+  )
+
+  const sort = (key: StringOrNumber, type?: OrderState) => {
+    const { type: t, key: k } = getNextSortMap({
+      key,
+      type,
+      prevType: _type.value,
+      prevKey: sortBy.value
+    })
+    _type.value = t
+    sortBy.value = k
   }
 
-  const getState = _getState(sortBy, _type)
-  const debug = computed(() => ({
-    type: _type.value,
-    sortBy: sortBy.value
-  }))
+  const getState = computed(() => _getState(sortBy.value, _type.value))
 
-  const sortMap = ref<Record<string, Order | undefined>>({})
   return {
     items: sortedItems,
     sort,
-    sortMap,
-    getState,
-    debug
+    getState
   }
 }
 
-export { useSort }
+export {
+  _getState,
+  getNextSortMap,
+  getNextState,
+  OrderState,
+  simpleSort,
+  sortFn,
+  sortItems,
+  useSort
+}
