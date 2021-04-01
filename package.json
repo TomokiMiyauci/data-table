@@ -9,7 +9,7 @@
   "scripts": {
     "commit": "cz",
     "prepare": "husky install",
-    "release": "multi-semantic-release --ignore-packages=examples/*",
+    "release": "multi-semantic-release --ignore-packages=examples/* --deps.bump=satisfy",
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test"
   },
