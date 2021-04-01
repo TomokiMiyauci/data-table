@@ -1,16 +1,16 @@
 <template>
-  <table>
-    <thead>
+  <table :class="table">
+    <thead :class="thead">
       <tr>
-        <th v-for="{ text, value } in headers" :key="value">
+        <th v-for="{ text, value } in headers" :key="value" :class="th">
           {{ text }}
           <button @click="onClick(value)">{{ getState(value) }}</button>
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr v-for="(item, index) in pagedItems" :key="index">
-        <td v-for="{ value } in headers" :key="value">
+    <tbody :class="tbody">
+      <tr v-for="(item, index) in pagedItems" :key="index" :class="tr">
+        <td v-for="{ value } in headers" :key="value" :class="td">
           {{ item[value] }}
         </td>
       </tr>
@@ -34,18 +34,18 @@
 <script setup lang="ts">
 import type { Header, Item } from '@miyauci/data-table-core'
 import type { PropType } from 'vue'
-import { defineProps, toRefs, watch } from 'vue'
+import { computed, defineProps, toRefs, watch } from 'vue'
 
 import type { NumberOrAll, Pagination } from '../hooks'
 import { useFilter, usePagination, useSort } from '../hooks'
 
 const props = defineProps({
   headers: {
-    type: Array as () => Header[],
+    type: Array as PropType<Header[]>,
     default: () => []
   },
   items: {
-    type: Array as () => Item[],
+    type: Array as PropType<Item[]>,
     default: () => []
   },
   search: {
@@ -58,10 +58,17 @@ const props = defineProps({
   }
 })
 
-const { items, headers, search } = toRefs(props)
+const table = 'min-w-full divide-y divide-gray-200'
+const thead = 'bg-gray-50 whitespace-nowrap uppercase'
+const th =
+  'p-2 sm:p-3 lg:p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase'
+const tbody = 'bg-white divide-y divide-gray-200'
+const tr = 'transition text-gray-600 hoverLbg-gray-100 hover:shadow-lg'
+const td = 'px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-4 whitespace-nowrap'
+const { headers, search } = toRefs(props)
 const { items: filteredItems, filter } = useFilter({
-  items,
-  headers
+  items: computed(() => props.items),
+  headers: computed(() => props.headers)
 })
 watch(search, (now) => filter(now))
 
