@@ -7,8 +7,8 @@ import {
 import { computed, ComputedRef, Ref, ref } from 'vue'
 
 type Options = {
-  headers: Ref<Header[]>
-  items: Ref<Item[]>
+  headers: ComputedRef<Header[]>
+  items: ComputedRef<Item[]>
 }
 type HeaderValueAndFilter = Pick<Header, 'value' | 'filter'>
 type StringOrNumber = string | number
