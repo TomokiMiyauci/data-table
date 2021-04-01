@@ -41,7 +41,7 @@ const getNextSortMap = ({
   if (prevKey === key) {
     return {
       type: type || getNextState(prevType),
-      key: prevType ? key : ''
+      key: ['DESC', ''].includes(prevType) ? '' : key
     }
   } else {
     return {
