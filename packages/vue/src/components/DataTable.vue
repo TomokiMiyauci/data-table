@@ -56,8 +56,8 @@ import IconAccessibility from 'virtual:vite-icons/carbon/arrow-down'
 import type { PropType } from 'vue'
 import { computed, defineProps, toRefs, watch } from 'vue'
 
-import type { NumberOrAll, Pagination } from '../hooks'
-import { useFilter, usePagination, useSort } from '../hooks'
+import type { NumberOrAll, Pagination } from '@/hooks'
+import { useFilter, usePagination, useSort } from '@/hooks'
 
 const props = defineProps({
   headers: {

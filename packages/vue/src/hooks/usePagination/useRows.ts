@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 
-import { NumberOrAll } from './types'
-import { useRow } from './useRow'
+import { NumberOrAll } from '@/hooks/usePagination/types'
+import { useRow } from '@/hooks/usePagination/useRow'
 
 const useRows = <T extends NumberOrAll[]>(rows: T, init?: number) => {
   const _rows = ref(rows)

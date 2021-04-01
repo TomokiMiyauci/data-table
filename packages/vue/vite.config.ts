@@ -5,13 +5,15 @@ import Icons from 'vite-plugin-icons'
 import WindiCSS from 'vite-plugin-windicss'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    WindiCSS({
-      config: {}
-    }),
-    Icons()
-  ],
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: resolve(__dirname, 'src')
+      }
+    ]
+  },
+  plugins: [vue(), WindiCSS(), Icons()],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

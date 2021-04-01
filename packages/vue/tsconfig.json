@@ -12,18 +12,12 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["ES2020", "dom", "ES2020.String"],
-    "types": ["vite/client"],
+    "lib": ["ESNEXT", "dom", "ES2020.String"],
+    "types": ["vite/client", "./src/shims-vue"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/main.ts"
-  ]
+  "files": ["src/index.ts"]
 }

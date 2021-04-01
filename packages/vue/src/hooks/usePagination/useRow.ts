@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { NumberOrAll } from './types'
+import { NumberOrAll } from '@/hooks/usePagination/types'
 
 const useRow = (row: NumberOrAll) => {
   const _row = ref(row)

@@ -1,10 +1,10 @@
 import type { Item } from '@miyauci/data-table-core'
 import { computed, ComputedRef, watch } from 'vue'
 
-import { useReducer } from '../useReducer'
-import { NumberOrAll, Pagination } from './types'
-import { reducer } from './usePage'
-import { useRows } from './useRows'
+import { NumberOrAll, Pagination } from '@/hooks/usePagination/types'
+import { reducer } from '@/hooks/usePagination/usePage'
+import { useRows } from '@/hooks/usePagination/useRows'
+import { useReducer } from '@/hooks/useReducer'
 
 const getRowsPerPage = ({
   row,
