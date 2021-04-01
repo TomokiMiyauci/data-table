@@ -21,11 +21,10 @@
     "build:types": "tsc src/index.ts --lib ESNEXT,DOM --outDir dist --types vite/client,./src/shims-vue --emitDeclarationOnly -d",
     "test:unit": "jest",
     "test": "yarn test:unit",
-    "serve": "vite preview",
-    "prepublishOnly": "yarn build"
+    "serve": "vite preview"
   },
   "dependencies": {
-    "@miyauci/data-table-core": "1.0.0-beta.5",
+    "@miyauci/data-table-core": "1.0.0-beta.4",
     "rambda": "^6.7.0",
     "vue": "^3.0.9",
     "vue-i18n": "^9.0.0"
