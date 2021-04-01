@@ -1,4 +1,4 @@
-import type { Header, Item } from '@miyauci/data-table-core'
+import type { Header, Item, StringOrNumber } from '@miyauci/data-table-core'
 import { ref } from 'vue'
 
 import {
@@ -10,7 +10,6 @@ import {
   HeaderValueAndFilter,
   mapValueFilter,
   someCheck,
-  StringOrNumber,
   useFilter
 } from '@/hooks/useFilter'
 

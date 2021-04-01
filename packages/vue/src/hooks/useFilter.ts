@@ -1,4 +1,4 @@
-import type { Header, Item } from '@miyauci/data-table-core'
+import type { Header, Item, StringOrNumber } from '@miyauci/data-table-core'
 import {
   isUndefinedOrTrue,
   lowerCase,
@@ -11,7 +11,6 @@ type Options = {
   items: ComputedRef<Item[]>
 }
 type HeaderValueAndFilter = Pick<Header, 'value' | 'filter'>
-type StringOrNumber = string | number
 type GetFilteredItems = {
   filterableHeaderValues: ComputedRef<HeaderValueAndFilter[]>
   search: Ref<StringOrNumber>
@@ -121,6 +120,5 @@ export {
   HeaderValueAndFilter,
   mapValueFilter,
   someCheck,
-  StringOrNumber,
   useFilter
 }
