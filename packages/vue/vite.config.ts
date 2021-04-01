@@ -1,17 +1,16 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import Icons from 'vite-plugin-icons'
 import WindiCSS from 'vite-plugin-windicss'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     WindiCSS({
-      config: {
-        preflight: false
-      }
-    })
+      config: {}
+    }),
+    Icons()
   ],
   build: {
     lib: {

@@ -480,6 +480,16 @@
   resolved "https://registry.yarnpkg.com/@gitmoji/parser-opts/-/parser-opts-1.3.0.tgz#7118a512342afd89c895cb2fd95454fa73f377bb"
   integrity sha512-NqfoW12eXMdDJz3g3NHnopEgDoqdY1YshO6XxIVPOqotGTDcjD1sL28AVKskbYveGmHBPdHieRRv6M9Iq7dt4w==
 
+"@iconify/json-tools@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@iconify/json-tools/-/json-tools-1.0.10.tgz#d9a7050dbbe8bb29d684d4b3f9446ed2d0bea3cc"
+  integrity sha512-LFelJDOLZ6JHlmlAkgrvmcu4hpNPB91KYcr4f60D/exzU1eNOb4/KCVHIydGHIQFaOacIOD+Xy+B7P1z812cZg==
+
+"@iconify/json@^1.1.323":
+  version "1.1.323"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.323.tgz#38cf0059904cbb18ed0d32b458491aee59497e91"
+  integrity sha512-sSW9u/75hTRdxgNJ0midhBAR2dXe04umm0wn2TXTsKwVQouyv1Ik01ZtA19qMRRvY0CyCc+2CeSYDSxZcfjyKQ==
+
 "@intlify/core-base@9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@intlify/core-base/-/core-base-9.0.0.tgz#3de223b8532c535d022e5be58f7d56a26d2fb12f"
@@ -8155,6 +8165,14 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+vite-plugin-icons@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-icons/-/vite-plugin-icons-0.4.0.tgz#bfc6bfd84f73b4d2bac137861d8d6153ce6f230b"
+  integrity sha512-IBXx2+cYEXqOMwZd+DsNYisJgWOc4uHDTs4oWz/XeiN0mIelDYDW+TmtxKt0Vl2tz6rFh6iyjOuW+KZocCRsGw==
+  dependencies:
+    "@iconify/json-tools" "^1.0.10"
+    vue-template-es2015-compiler "^1.9.1"
+
 vite-plugin-windicss@^0.11.0, vite-plugin-windicss@^0.11.1:
   version "0.11.3"
   resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.11.3.tgz#648b5267af34bb6f05e2f44662f0d7f3065b0cc5"
@@ -8197,6 +8215,11 @@ vue-i18n@^9.0.0:
     "@intlify/core-base" "9.0.0"
     "@intlify/shared" "9.0.0"
     "@vue/devtools-api" "^6.0.0-beta.5"
+
+vue-template-es2015-compiler@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
+  integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
 vue-tsc@^0.0.8:
   version "0.0.8"
