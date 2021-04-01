@@ -13,5 +13,5 @@ interface Item {
 }
 
 type Order = 'ASC' | 'DESC'
-
-export type { Header, Item, Order }
+type StringOrNumber = string | number
+export type { Header, Item, Order, StringOrNumber }

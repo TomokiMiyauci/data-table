@@ -1,14 +1,12 @@
-import { toLower, toString } from 'rambda'
+import { toLower, Ord } from 'rambda'
 
-const objectOrPrimitive = (
-  val: string | number | Date | undefined
-): string | Date => {
+const objectOrPrimitive = (val: string | number | Date | undefined): Ord => {
   if (val instanceof Date) {
     return val
   } else if (typeof val === 'string') {
     return toLower(val)
   } else if (typeof val === 'number') {
-    return toLower(toString(val))
+    return val
   } else {
     return ''
   }
