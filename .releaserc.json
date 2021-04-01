@@ -6,8 +6,11 @@
       {
         "releaseRules": {
           "major": [":boom:"],
+          "premajor": [":boom:"],
           "minor": [":sparkles:"],
-          "patch": [":bug:", ":ambulance:", ":lock:"]
+          "preminor": [":sparkles:"],
+          "patch": [":bug:", ":ambulance:", ":lock:"],
+          "prepatch": [":bug:", ":ambulance:", ":lock:"]
         }
       }
     ],
