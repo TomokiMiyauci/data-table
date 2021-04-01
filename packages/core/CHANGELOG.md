@@ -1,3 +1,11 @@
+# [v1.0.0-beta.4](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/react-data-table@1.0.0-beta.3...@miyauci/react-data-table@1.0.0-beta.4) (2021-04-01)
+
+## ✨ New Features
+- [`9fb2d3d`](https://github.com/TomokiMiyauci/data-table/commit/9fb2d3d)  (vue) Add useReducer hooks 
+
+## 🐛 Bug Fixes
+- [`4a26c5c`](https://github.com/TomokiMiyauci/data-table/commit/4a26c5c)  (vue) Fix logic
+
 # [v1.0.0-beta.6](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/vue-data-table@1.0.0-beta.5...@miyauci/vue-data-table@1.0.0-beta.6) (2021-04-01)
 
 ## 🐛 Bug Fixes
