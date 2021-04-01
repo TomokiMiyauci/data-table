@@ -42,7 +42,8 @@
       "scopes": [
         "core",
         "vue",
-        "react"
+        "react",
+        "examples"
       ]
     }
   }
