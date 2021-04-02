@@ -20,7 +20,7 @@
               :class="[getState(value) === 'DESC' ? 'rotate-180' : '']"
               class="transform transition duration-500"
             >
-              <IconAccessibility />
+              <carbon-arrow-down />
             </div>
           </button>
         </th>
@@ -71,7 +71,7 @@
                 :disabled="!canPrev"
                 @click="turnPage({ type: 'PREV' })"
               >
-                <IconChevronLeft />
+                <carbon-chevron-left />
               </button>
 
               <span
@@ -100,7 +100,7 @@
                 :disabled="!canNext"
                 @click="turnPage({ type: 'NEXT' })"
               >
-                <IconChevronRight />
+                <carbon-chevron-right />
               </button>
             </span>
           </div>
@@ -112,9 +112,6 @@
 
 <script setup lang="ts">
 import type { Header, Item } from '@miyauci/data-table-core'
-import IconAccessibility from 'virtual:vite-icons/carbon/arrow-down'
-import IconChevronLeft from 'virtual:vite-icons/carbon/chevron-left'
-import IconChevronRight from 'virtual:vite-icons/carbon/chevron-right'
 import type { PropType } from 'vue'
 import { computed, defineProps, toRefs, watch } from 'vue'
 
