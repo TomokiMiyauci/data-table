@@ -20,8 +20,7 @@
     "build:lib": "vite build",
     "build:types": "tsc src/index.ts --jsx react --lib ESNEXT,DOM --outDir dist --types vite/client --emitDeclarationOnly -d --esModuleInterop",
     "serve": "vite preview",
-    "test": "echo test",
-    "prepublishOnly": "yarn build"
+    "test": "echo test"
   },
   "dependencies": {
     "@miyauci/data-table-core": "1.0.0-beta.*",
