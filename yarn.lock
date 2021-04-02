@@ -745,6 +745,13 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
+"@miyauci/data-table-core@1.0.0-beta.*":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@miyauci/data-table-core/-/data-table-core-1.0.0-beta.7.tgz#7c84d1d7c7d2cc1f71280d99cf888bf719b1c8f5"
+  integrity sha512-f4GvsQjEXHK/S8U59n1XTTwAWZE2s12wwc0wSLu/Sy3a7vFNAys3H357i1vpqDs8UrSgndT32Qda+Ga9DiuBZQ==
+  dependencies:
+    rambda "^6.7.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
