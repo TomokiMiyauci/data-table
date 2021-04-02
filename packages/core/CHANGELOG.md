@@ -1,3 +1,8 @@
+# [v1.0.0-beta.7](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/data-table-core@1.0.0-beta.6...@miyauci/data-table-core@1.0.0-beta.7) (2021-04-02)
+
+## ✨ New Features
+- [`5a4becd`](https://github.com/TomokiMiyauci/data-table/commit/5a4becd)  (vue) Add loading and no data feature
+
 # [v1.0.0-beta.4](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/react-data-table@1.0.0-beta.3...@miyauci/react-data-table@1.0.0-beta.4) (2021-04-01)
 
 ## ✨ New Features
