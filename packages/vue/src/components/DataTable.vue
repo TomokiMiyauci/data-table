@@ -10,13 +10,14 @@
         >
           <span class="cursor-auto" @click.stop>{{ text }}</span>
           <button
-            class="rounded-full border w-6 h-6 cursor-pointer outline-none focus:(outline-none) active:(ring-4 ring-blue-500 bg-gray-200) shadow hover:(border-blue-500 shadow-md bg-gray-100 ring-2 ring-blue-200 ) p-1 opacity-50 group-hover:opacity-100 transition duration-200"
+            class="rounded-full w-6 h-6 cursor-pointer p-1 opacity-50 group-hover:opacity-100"
+            :class="[
+              getState(value) ? 'border-blue-500 opacity-100 text-blue-500' : ''
+            ]"
             @click="onClick(value)"
           >
             <div
-              :class="[
-                getState(value) === 'DESC' ? 'rotate-180 text-blue-500' : ''
-              ]"
+              :class="[getState(value) === 'DESC' ? 'rotate-180' : '']"
               class="transform transition duration-500"
             >
               <IconAccessibility />
@@ -144,7 +145,6 @@ const {
   canPrev,
   rows,
   row,
-  p,
   isAllItemsInPage
 } =
   typeof props.pagination === 'boolean'

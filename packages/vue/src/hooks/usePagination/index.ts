@@ -136,7 +136,6 @@ const usePagination = (
     pages,
     items: pagedItems,
     turnPage,
-    p: _page,
     canNext,
     canPrev,
     isAllItemsInPage
