@@ -32,18 +32,31 @@
         </td>
       </tr>
     </tbody>
-    <tfoot v-if="pagination" class="p-10 m-4">
-      <tr class="p-3">
-        <th scope="row">
-          <select v-model="row">
-            <option v-for="num in rows" :key="num" :value="num">
-              {{ num }}
-            </option>
-          </select>
+    <tfoot v-if="pagination" class="bg-gray-50">
+      <tr>
+        <th class="py-2 px-4" colspan="2">
+          <div class="flex text-left">
+            <select
+              v-model="row"
+              class="outline-none shadow rounded border cursor-pointer hover:(ring-2 ring-blue-200 border-blue-500) focus:(ring-2 ring-blue-200 border-blue-500 text-blue-500)"
+            >
+              <option v-for="num in rows" :key="num" :value="num">
+                {{ num }}
+              </option>
+            </select>
 
-          <button :disabled="!canPrev" @click="prev">prev</button>
-          {{ page }}-{{ pages }}
-          <button :disabled="!canNext" @click="next">next</button>
+            <span class="space-x-4 mx-auto">
+              <button class="rounded p-1" :disabled="!canPrev" @click="prev">
+                <IconChevronLeft />
+              </button>
+              <button class="px-1 py-2 rounded">
+                {{ page }} / {{ pages }}
+              </button>
+              <button class="rounded p-1" :disabled="!canNext" @click="next">
+                <IconChevronRight />
+              </button>
+            </span>
+          </div>
         </th>
       </tr>
     </tfoot>
@@ -53,6 +66,8 @@
 <script setup lang="ts">
 import type { Header, Item } from '@miyauci/data-table-core'
 import IconAccessibility from 'virtual:vite-icons/carbon/arrow-down'
+import IconChevronLeft from 'virtual:vite-icons/carbon/chevron-left'
+import IconChevronRight from 'virtual:vite-icons/carbon/chevron-right'
 import type { PropType } from 'vue'
 import { computed, defineProps, toRefs, watch } from 'vue'
 
@@ -81,7 +96,7 @@ const props = defineProps({
 const table = 'min-w-full divide-y divide-gray-200'
 const thead = 'bg-gray-50 whitespace-nowrap uppercase'
 const th =
-  'group p-2 space-x-3 cursor-pointer sm:p-3 lg:p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase'
+  'group p-2 space-x-3 cursor-pointer sm:p-3 lg:p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hover:(bg-gray-100)'
 const tbody = 'bg-white divide-y divide-gray-200'
 const tr = 'transition text-gray-600 hoverLbg-gray-100 hover:shadow-lg'
 const td = 'px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-4 whitespace-nowrap'
@@ -114,6 +129,14 @@ const onClick = (val: string | number) => sort(val)
 
 <style scoped>
 * {
-  @apply antialiased;
+  @apply antialiased transition;
+}
+
+table {
+  @apply text-gray-600;
+}
+
+button {
+  @apply outline-none shadow border transition  hover:(border-blue-500 shadow-md bg-gray-100 ring-2 ring-blue-200) focus:(ring-2 border-blue-500 text-blue-500)  active:(ring-5 bg-gray-200) disabled:(opacity-50 cursor-not-allowed ring-0 border-transparent);
 }
 </style>
