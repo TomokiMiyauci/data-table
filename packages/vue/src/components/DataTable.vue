@@ -26,6 +26,27 @@
         </th>
       </tr>
     </thead>
+    <thead v-if="loading">
+      <tr>
+        <th class="p-0" :colspan="colspan">
+          <ProgressBar />
+        </th>
+      </tr>
+    </thead>
+    <data-table-state :colspan="colspan" :state="tableState">
+      <template #loading>
+        {{ loadingText }}
+      </template>
+
+      <template #no-data>
+        {{ noDataText }}
+      </template>
+
+      <template #no-search-result>
+        {{ noSearchResultText }}
+      </template>
+    </data-table-state>
+
     <tbody :class="tbody">
       <tr v-for="(item, index) in pagedItems" :key="index" :class="tr">
         <td v-for="{ value } in headers" :key="value" :class="td">
@@ -33,9 +54,10 @@
         </td>
       </tr>
     </tbody>
+
     <tfoot v-if="pagination" class="bg-gray-50">
       <tr>
-        <th class="py-2 px-4" colspan="2">
+        <th class="py-2 px-4" :colspan="colspan">
           <div class="flex text-left">
             <select v-model="row" class="rounded">
               <option v-for="num in rows" :key="num" :value="num">
@@ -96,11 +118,12 @@ import IconChevronRight from 'virtual:vite-icons/carbon/chevron-right'
 import type { PropType } from 'vue'
 import { computed, defineProps, toRefs, watch } from 'vue'
 
+import DataTableState from '@/components/DataTableState.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 import type { NumberOrAll, Pagination } from '@/hooks'
 import { useFilter, usePagination, useSort } from '@/hooks'
-const onInput = (a: any) => {
-  turnPage({ type: 'TO', to: Number(a.target.value) })
-}
+import { getTableState } from '@/utils'
+
 const props = defineProps({
   headers: {
     type: Array as PropType<Header[]>,
@@ -117,8 +140,38 @@ const props = defineProps({
   pagination: {
     type: [Array, Boolean] as PropType<NumberOrAll[] | boolean>,
     default: () => []
+  },
+
+  loading: {
+    type: Boolean,
+    default: false
+  },
+
+  loadingText: {
+    type: String,
+    default: 'Loading'
+  },
+
+  noDataText: {
+    type: String,
+    default: 'No data available'
+  },
+
+  noSearchResultText: {
+    type: String,
+    default: 'No matching records found'
   }
 })
+
+const tableState = computed(() =>
+  getTableState({
+    loading: props.loading,
+    originItems: props.items,
+    actualItems: pagedItems.value
+  })
+)
+
+const colspan = computed<number>(() => props.headers.length)
 
 const table = 'min-w-full divide-y divide-gray-200'
 const thead = 'bg-gray-50 whitespace-nowrap uppercase'
@@ -151,6 +204,8 @@ const {
     ? ({ items: sortedItems } as Pagination)
     : usePagination(sortedItems, props.pagination)
 
+const onInput = ({ target }: any) =>
+  turnPage({ type: 'TO', to: Number(target.value) })
 const onClick = (val: string | number) => sort(val)
 </script>
 
