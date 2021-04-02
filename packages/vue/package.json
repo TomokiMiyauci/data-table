@@ -1,6 +1,6 @@
 {
   "name": "@miyauci/vue-data-table",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "main": "dist/vue-data-table.umd.js",
   "module": "dist/vue-data-table.es.js",
   "types": "dist/index.d.ts",
@@ -24,7 +24,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@miyauci/data-table-core": "1.0.0-beta.6",
+    "@miyauci/data-table-core": "1.0.0-beta.8",
     "rambda": "^6.7.0",
     "vue": "^3.0.9",
     "vue-i18n": "^9.0.0"
