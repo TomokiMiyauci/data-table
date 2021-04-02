@@ -8,8 +8,10 @@ export type Pagination = {
   page: Ref<number>
   pages: ComputedRef<number>
   items: ComputedRef<readonly Item[]>
+  turnPage: (action: { type: 'NEXT' | 'PREV' }) => void
   next: () => void
   prev: () => void
   canPrev: ComputedRef<boolean>
   canNext: ComputedRef<boolean>
+  isAllItemsInPage: ComputedRef<boolean>
 }

@@ -36,23 +36,47 @@
       <tr>
         <th class="py-2 px-4" colspan="2">
           <div class="flex text-left">
-            <select
-              v-model="row"
-              class="outline-none shadow rounded border cursor-pointer hover:(ring-2 ring-blue-200 border-blue-500) focus:(ring-2 ring-blue-200 border-blue-500 text-blue-500)"
-            >
+            <select v-model="row" class="rounded">
               <option v-for="num in rows" :key="num" :value="num">
                 {{ num }}
               </option>
             </select>
 
             <span class="space-x-4 mx-auto">
-              <button class="rounded p-1" :disabled="!canPrev" @click="prev">
+              <button
+                class="rounded p-1"
+                :disabled="!canPrev"
+                @click="turnPage({ type: 'PREV' })"
+              >
                 <IconChevronLeft />
               </button>
-              <button class="px-1 py-2 rounded">
-                {{ page }} / {{ pages }}
-              </button>
-              <button class="rounded p-1" :disabled="!canNext" @click="next">
+
+              <span
+                v-if="isAllItemsInPage"
+                class="shadow p-2 px-3 rounded font-normal"
+              >
+                {{ pages }}
+              </span>
+
+              <select
+                v-else
+                class="px-1 py-2 rounded appearance-none"
+                :value="page"
+                @input="onInput"
+              >
+                <option
+                  v-for="(row, index) in pages"
+                  :key="row"
+                  :value="index + 1"
+                >
+                  <span>{{ row }} / {{ pages }}</span>
+                </option>
+              </select>
+              <button
+                class="rounded p-1"
+                :disabled="!canNext"
+                @click="turnPage({ type: 'NEXT' })"
+              >
                 <IconChevronRight />
               </button>
             </span>
@@ -73,7 +97,9 @@ import { computed, defineProps, toRefs, watch } from 'vue'
 
 import type { NumberOrAll, Pagination } from '@/hooks'
 import { useFilter, usePagination, useSort } from '@/hooks'
-
+const onInput = (a: any) => {
+  turnPage({ type: 'TO', to: Number(a.target.value) })
+}
 const props = defineProps({
   headers: {
     type: Array as PropType<Header[]>,
@@ -112,13 +138,14 @@ const { items: sortedItems, sort, getState } = useSort(filteredItems)
 const {
   items: pagedItems,
   pages,
-  next,
-  prev,
+  turnPage,
   page,
   canNext,
   canPrev,
   rows,
-  row
+  row,
+  p,
+  isAllItemsInPage
 } =
   typeof props.pagination === 'boolean'
     ? ({ items: sortedItems } as Pagination)
@@ -138,5 +165,9 @@ table {
 
 button {
   @apply outline-none shadow border transition  hover:(border-blue-500 shadow-md bg-gray-100 ring-2 ring-blue-200) focus:(ring-2 border-blue-500 text-blue-500)  active:(ring-5 bg-gray-200) disabled:(opacity-50 cursor-not-allowed ring-0 border-transparent);
+}
+
+select {
+  @apply outline-none shadow border cursor-pointer hover:(ring-2 ring-blue-200 border-blue-500 bg-gray-100) focus:(ring-2 ring-blue-200 border-blue-500 text-blue-500);
 }
 </style>

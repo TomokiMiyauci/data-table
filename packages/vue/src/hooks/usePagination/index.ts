@@ -63,6 +63,9 @@ const usePagination = (
   const page = computed<number>(() =>
     greaterThan(_page.value, pages.value) ? pages.value : _page.value
   )
+  const isAllItemsInPage = computed<boolean>(
+    () => rowsPerPage.value >= items.value.length
+  )
   const { rows, row, setRow, setRows } = useRows(pagination)
   const rowsPerPage = computed<number>(() =>
     getRowsPerPage({ items: items.value, row: row.value })
@@ -77,15 +80,37 @@ const usePagination = (
 
   const canNext = computed<boolean>(() => greaterThan(pages.value, page.value))
   const canPrev = computed<boolean>(() => greaterThan(page.value, 1))
-  const next = (): void => {
-    if (canNext.value) {
-      dispatch({ type: 'inc' })
-    }
-  }
 
-  const prev = (): void => {
-    if (canPrev.value) {
-      dispatch({ type: 'dec' })
+  const turnPage = <T extends 'NEXT' | 'PREV' | 'TO'>({
+    type,
+    to
+  }: T extends 'TO'
+    ? {
+        type: T
+        to: number
+      }
+    : {
+        type: T
+        to?: number
+      }): void => {
+    switch (type) {
+      case 'NEXT': {
+        if (canNext.value) {
+          dispatch({ type: 'inc' })
+        }
+        break
+      }
+
+      case 'PREV': {
+        if (canPrev.value) {
+          dispatch({ type: 'dec' })
+        }
+        break
+      }
+
+      case 'TO': {
+        dispatch({ type: 'be', val: to })
+      }
     }
   }
 
@@ -109,11 +134,12 @@ const usePagination = (
     row,
     page,
     pages,
-    next,
-    prev,
     items: pagedItems,
+    turnPage,
+    p: _page,
     canNext,
-    canPrev
+    canPrev,
+    isAllItemsInPage
   }
 }
 

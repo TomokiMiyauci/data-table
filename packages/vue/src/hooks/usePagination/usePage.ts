@@ -1,6 +1,6 @@
 const reducer = (
   state: number,
-  action: { type: 'inc' | 'dec' | 'reset' }
+  action: { type: 'inc' | 'dec' | 'reset' | 'be'; val?: number }
 ): number => {
   switch (action.type) {
     case 'inc': {
@@ -13,6 +13,10 @@ const reducer = (
 
     case 'reset': {
       return 1
+    }
+
+    case 'be': {
+      return action.val!
     }
 
     default: {
