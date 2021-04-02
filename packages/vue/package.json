@@ -18,11 +18,11 @@
     "lint": "run-p lint:*",
     "lint:tsc": "vue-tsc",
     "lint:style": "stylelint src/*",
-    "build": "yarn build:lib && yarn build:types",
+    "build": "run-p build:*",
     "build:lib": "vite build",
     "build:types": "tsc && tscpaths -p tsconfig.json -s src",
     "test:unit": "jest",
-    "test": "yarn test:unit",
+    "test": "run-p test:*",
     "serve": "vite preview"
   },
   "dependencies": {
