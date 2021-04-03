@@ -1,6 +1,6 @@
 import type { Item } from '@miyauci/data-table-core'
 
-import type { TableState } from '../types'
+import type { TableState } from '@/types'
 
 const getTableState = ({
   loading,
