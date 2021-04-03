@@ -93,10 +93,12 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: '**/dist'
+          path: |
+            **/dist
+            !node_modules
 
   test:
-    needs: [build]
+    needs: [lint, build]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -122,7 +124,9 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: '**/dist'
+          path: |
+            **/dist
+            !node_modules
 
       - name: Test
         run: yarn test
@@ -153,7 +157,9 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: '**/dist'
+          path: |
+            **/dist
+            !node_modules
 
       - name: release
         run: yarn release
