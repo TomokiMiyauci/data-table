@@ -66,6 +66,7 @@ export default defineComponent({
 
 .it-progress-line {
   @apply bg-blue-500;
+
   transition: all 0.2s ease-out;
   height: 100%;
   position: relative;
