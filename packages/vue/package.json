@@ -28,7 +28,7 @@
   "dependencies": {
     "@miyauci/data-table-core": "1.0.0",
     "rambda": "^6.7.0",
-    "vue": "^3.0.9",
+    "vue": "^3.0.11",
     "vue-i18n": "^9.0.0"
   },
   "devDependencies": {
