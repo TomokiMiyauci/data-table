@@ -13,7 +13,6 @@ module.exports = {
       [
         ':art:',
         ':newspaper:',
-        ':pencil:',
         ':memo:',
         ':zap:',
         ':fire:',
