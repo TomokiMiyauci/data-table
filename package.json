@@ -2,35 +2,49 @@
   "name": "@miyauci/data-table-monorepo",
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*"
+    ],
+    "nohoist": [
+      "**/@vue/compiler-sfc"
+    ]
+  },
   "scripts": {
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "multi-semantic-release --ignore-packages=examples/* --deps.bump=satisfy",
+    "lint": "wsrun -m lint",
+    "build": "wsrun -t -r -m build",
+    "test": "wsrun -m test"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@swc/jest": "^0.1.2",
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "commitizen": "^4.2.3",
     "commitlint-config-gitmoji": "^2.2.3",
     "cz-emoji": "^1.3.1",
+    "eslint": "^7.23.0",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "esno": "^0.5.0",
     "husky": "^5.2.0",
+    "jest": "^26.6.3",
+    "json-server": "^0.16.3",
     "multi-semantic-release": "^2.8.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "semantic-release-gitmoji": "^1.3.4",
-    "typescript": "^4.2.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-emoji"
-    },
-    "cz-emoji": {
-      "scopes": [
-        "core",
-        "vue"
-      ]
-    }
+    "stylelint": "^13.12.0",
+    "stylelint-config-standard": "^21.0.0",
+    "tscpaths": "^0.0.9",
+    "typescript": "^4.2.3",
+    "wsrun": "^5.2.4"
   }
 }

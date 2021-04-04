@@ -1,0 +1,35 @@
+{
+  "name": "@miyauci/data-table-core",
+  "version": "1.0.0-beta.7",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "commit": "yarn --cwd ../.. commit",
+    "cz": "yarn commit",
+    "lint:script": "eslint src/*",
+    "lint": "yarn lint:script",
+    "build": "rollup -c rollup.config.ts",
+    "test": "echo test"
+  },
+  "devDependencies": {
+    "rollup": "^2.43.1",
+    "rollup-plugin-typescript2": "^0.30.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "rambda": "^6.7.0"
+  }
+}

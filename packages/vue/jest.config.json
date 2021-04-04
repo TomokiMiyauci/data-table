@@ -1,0 +1,12 @@
+{
+  "clearMocks": true,
+  "coverageDirectory": "coverage",
+  "coverageProvider": "v8",
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.ts$": "@swc/jest"
+  },
+  "moduleNameMapper": {
+    "^@/(.+)$": "<rootDir>/src/$1"
+  }
+}
