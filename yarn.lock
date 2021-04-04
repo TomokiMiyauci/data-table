@@ -485,10 +485,10 @@
   resolved "https://registry.yarnpkg.com/@iconify/json-tools/-/json-tools-1.0.10.tgz#d9a7050dbbe8bb29d684d4b3f9446ed2d0bea3cc"
   integrity sha512-LFelJDOLZ6JHlmlAkgrvmcu4hpNPB91KYcr4f60D/exzU1eNOb4/KCVHIydGHIQFaOacIOD+Xy+B7P1z812cZg==
 
-"@iconify/json@^1.1.323":
-  version "1.1.323"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.323.tgz#38cf0059904cbb18ed0d32b458491aee59497e91"
-  integrity sha512-sSW9u/75hTRdxgNJ0midhBAR2dXe04umm0wn2TXTsKwVQouyv1Ik01ZtA19qMRRvY0CyCc+2CeSYDSxZcfjyKQ==
+"@iconify/json@^1.1.324":
+  version "1.1.324"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.324.tgz#e45c16406bc587b3be4adc6e51a783f707cf72e4"
+  integrity sha512-1abjTuoEq6Cr4hY1vEmElQSXLpVfYOtGGtkKele4n4QpuBo7HYoqQPGF+391f/FTM5xQ5Ic1i3YBy0P3mfuuTg==
 
 "@intlify/core-base@9.0.0":
   version "9.0.0"
@@ -752,10 +752,19 @@
   dependencies:
     rambda "^6.7.0"
 
-"@miyauci/vue-data-table@./packages/vue":
-  version "1.0.0-beta.8"
+"@miyauci/data-table-core@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@miyauci/data-table-core/-/data-table-core-1.0.0-beta.3.tgz#0fd2d57457a81b0e82f61fa9f88c83a26bf8d82e"
+  integrity sha512-pSuhi6cmQ617r+yZmzQSaQQ/IYjqXQq/Yo3scnTl1LmJAWFcLg1E2AeLp9Jk57yeERaV8W5fxI7P3lCDSGLffw==
   dependencies:
-    "@miyauci/data-table-core" "1.0.0-beta.*"
+    rambda "^6.7.0"
+
+"@miyauci/vue-data-table@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@miyauci/vue-data-table/-/vue-data-table-1.0.0-beta.3.tgz#6fc63f374edb4db19a2c6d52cce1504ed8e7eac3"
+  integrity sha512-Lqzi2Cxvx4TalRRzuQxGeYnPSSexcmImDwlRZZyaqHuBoy4D+L4b/t8a+zwkTPu9k5d04oSexxU1mEymPfPFbQ==
+  dependencies:
+    "@miyauci/data-table-core" "1.0.0-beta.3"
     rambda "^6.7.0"
     vue "^3.0.9"
     vue-i18n "^9.0.0"
