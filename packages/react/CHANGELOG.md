@@ -1,3 +1,14 @@
+# v1.0.0 (2021-04-04)
+
+## ✨ New Features
+- [`319bbb1`](https://github.com/TomokiMiyauci/data-table/commit/319bbb1)  (react) Initial release 
+
+
+
+### Dependencies
+
+* **@miyauci/data-table-core:** upgraded to 1.0.0
+
 # [v1.0.0-beta.7](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/data-table-core@1.0.0-beta.6...@miyauci/data-table-core@1.0.0-beta.7) (2021-04-02)
 
 ## ✨ New Features
