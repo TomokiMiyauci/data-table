@@ -752,10 +752,19 @@
   dependencies:
     rambda "^6.7.0"
 
-"@miyauci/vue-data-table@./packages/vue":
-  version "1.0.0-beta.8"
+"@miyauci/data-table-core@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@miyauci/data-table-core/-/data-table-core-1.0.0-beta.3.tgz#0fd2d57457a81b0e82f61fa9f88c83a26bf8d82e"
+  integrity sha512-pSuhi6cmQ617r+yZmzQSaQQ/IYjqXQq/Yo3scnTl1LmJAWFcLg1E2AeLp9Jk57yeERaV8W5fxI7P3lCDSGLffw==
   dependencies:
-    "@miyauci/data-table-core" "1.0.0-beta.*"
+    rambda "^6.7.0"
+
+"@miyauci/vue-data-table@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@miyauci/vue-data-table/-/vue-data-table-1.0.0-beta.3.tgz#6fc63f374edb4db19a2c6d52cce1504ed8e7eac3"
+  integrity sha512-Lqzi2Cxvx4TalRRzuQxGeYnPSSexcmImDwlRZZyaqHuBoy4D+L4b/t8a+zwkTPu9k5d04oSexxU1mEymPfPFbQ==
+  dependencies:
+    "@miyauci/data-table-core" "1.0.0-beta.3"
     rambda "^6.7.0"
     vue "^3.0.9"
     vue-i18n "^9.0.0"
@@ -3551,10 +3560,10 @@ eslint-config-prettier@^6.0.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-jest@^24.3.2:
-  version "24.3.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.2.tgz#30a8b2dea6278d0da1d6fb9d6cd530aaf58050a1"
-  integrity sha512-cicWDr+RvTAOKS3Q/k03+Z3odt3VCiWamNUHWd6QWbVQWcYJyYgUTu8x0mx9GfeDEimawU5kQC+nQ3MFxIM6bw==
+eslint-plugin-jest@^24.3.3:
+  version "24.3.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.3.tgz#4e0f9dd6b1667990e7be3a7d7c9a85b952056df9"
+  integrity sha512-IQ9tLHyKEyBw1BM3IE13WxOXQm03h/7dy1KFknUVkoY2N2+Hw7lb/3YFz/4jwcrxXt2+KhA/GoiK7jt8aK19ww==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
