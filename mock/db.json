@@ -1,3 +1,10 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }]
+  "posts": [
+    { "id": 1, "framework": "react", "platform": "JavaScript" },
+    { "id": 2, "framework": "preact", "platform": "JavaScript" },
+    { "id": 3, "framework": "vue", "platform": "JavaScript" },
+    { "id": 4, "framework": "svelte", "platform": "JavaScript" },
+    { "id": 5, "framework": "lit-element", "platform": "JavaScript" },
+    { "id": 6, "framework": "express", "platform": "node" }
+  ]
 }
