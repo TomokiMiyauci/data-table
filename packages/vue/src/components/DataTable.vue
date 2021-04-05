@@ -1,31 +1,13 @@
 <template>
   <table :class="table">
-    <thead :class="thead">
-      <tr>
-        <th
-          v-for="{ text, value } in headers"
-          :key="value"
-          :class="th"
-          @click="onClick(value)"
-        >
-          <span class="cursor-auto" @click.stop>{{ text }}</span>
-          <button
-            class="rounded-full w-6 h-6 cursor-pointer p-1 opacity-50 group-hover:opacity-100"
-            :class="[
-              getState(value) ? 'border-blue-500 opacity-100 text-blue-500' : ''
-            ]"
-            @click="onClick(value)"
-          >
-            <div
-              :class="[getState(value) === 'DESC' ? 'rotate-180' : '']"
-              class="transform transition duration-500"
-            >
-              <carbon-arrow-down />
-            </div>
-          </button>
-        </th>
-      </tr>
-    </thead>
+    <data-table-header
+      :headers="headers"
+      :thead="thead"
+      :th="th"
+      :get-state="getState"
+      @click="onClick"
+    />
+
     <thead v-if="loading">
       <tr>
         <th class="p-0" :colspan="colspan">
@@ -47,15 +29,15 @@
       </template>
     </data-table-state>
 
-    <tbody :class="tbody">
-      <tr v-for="(item, index) in pagedItems" :key="index" :class="tr">
-        <td v-for="{ value } in headers" :key="value" :class="td">
-          {{ item[value] }}
-        </td>
-      </tr>
-    </tbody>
+    <data-table-body
+      :headers="headers"
+      :items="pagedItems"
+      :tbody="tbody"
+      :tr="tr"
+      :td="td"
+    />
 
-    <tfoot v-if="pagination" class="bg-gray-50">
+    <tfoot class="bg-gray-50">
       <tr>
         <th class="py-2 px-4" :colspan="colspan">
           <div class="flex text-left">
@@ -115,6 +97,8 @@ import type { Header, Item } from '@miyauci/data-table-core'
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 
+import DataTableBody from '@/components/DataTableBody.vue'
+import DataTableHeader from '@/components/DataTableHeader.vue'
 import DataTableState from '@/components/DataTableState.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { LOADING_TEXT, NO_DATA_TEXT, NO_SEARCH_RESULT_TEXT } from '@/constants'
@@ -124,6 +108,8 @@ import { useProps } from '@/hooks/useProps'
 export default defineComponent({
   components: {
     DataTableState,
+    DataTableHeader,
+    DataTableBody,
     ProgressBar
   },
   props: {
