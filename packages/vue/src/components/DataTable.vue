@@ -5,7 +5,7 @@
       :thead="thead"
       :th="th"
       :get-state="getState"
-      @click="onClick"
+      @click:row="onClick"
     />
 
     <thead v-if="loading">

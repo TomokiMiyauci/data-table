@@ -5,7 +5,7 @@
         v-for="{ text, value } in headers"
         :key="value"
         :class="th"
-        @click="$emit('click', value)"
+        @click="$emit('click:row', value)"
       >
         <span class="cursor-auto" @click.stop>{{ text }}</span>
         <button
@@ -13,7 +13,7 @@
           :class="[
             getState(value) ? 'border-blue-500 opacity-100 text-blue-500' : ''
           ]"
-          @click="$emit('click', value)"
+          @click="$emit('click:row', value)"
         >
           <div
             :class="[getState(value) === 'DESC' ? 'rotate-180' : '']"
@@ -31,7 +31,7 @@
 import type { Header } from '@miyauci/data-table-core'
 import type { PropType } from 'vue'
 import { defineEmit, defineProps } from 'vue'
-defineEmit(['click'])
+defineEmit(['click:row'])
 defineProps({
   headers: {
     type: Array as PropType<Header[]>,
