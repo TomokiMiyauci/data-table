@@ -1,6 +1,6 @@
 <template>
   <input v-model="search" />
-  <data-table
+  <DataTable
     :headers="headers"
     :items="items"
     :search="search"
