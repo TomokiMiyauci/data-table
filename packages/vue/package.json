@@ -26,7 +26,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@miyauci/data-table-core": "1.0.0-beta.*",
+    "@miyauci/data-table-core": "*",
     "rambda": "^6.7.0"
   },
   "peerDependencies": {
