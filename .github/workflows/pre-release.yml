@@ -66,9 +66,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: |
-            **/dist/**/*
-            !node_modules
+          path: packages/*/dist
 
   lint:
     needs: [build]
@@ -97,9 +95,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: |
-            **/dist/**/*
-            !node_modules
+          path: packages/*/dist
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -134,9 +130,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: |
-            **/dist/**/*
-            !node_modules
+          path: packages/*/dist
 
       - name: Test
         run: yarn test
@@ -167,9 +161,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: |
-            dist/**/*
-            !node_modules
+          path: packages/*/dist
 
       - name: Release
         run: yarn release
