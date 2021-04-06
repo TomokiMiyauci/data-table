@@ -66,7 +66,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: packages/**/dist
+          path: packages/vue|react|core/dist
 
   lint:
     needs: [build]
