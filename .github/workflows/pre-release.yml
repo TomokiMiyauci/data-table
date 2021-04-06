@@ -67,7 +67,7 @@ jobs:
         with:
           name: dist
           path: |
-            **/dist
+            dist/**/*
             !node_modules
 
   lint:
@@ -98,11 +98,8 @@ jobs:
         with:
           name: dist
           path: |
-            **/dist
+            dist/**/*
             !node_modules
-
-      - name: Build
-        run: yarn build
 
       - name: Lint
         run: yarn lint
@@ -135,11 +132,8 @@ jobs:
         with:
           name: dist
           path: |
-            **/dist
+            dist/**/*
             !node_modules
-
-      - name: Build
-        run: yarn build
 
       - name: Test
         run: yarn test
@@ -171,7 +165,7 @@ jobs:
         with:
           name: dist
           path: |
-            **/dist
+            dist/**/*
             !node_modules
 
       - name: Release
