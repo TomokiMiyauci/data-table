@@ -95,10 +95,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: packages/*/dist
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       - name: Lint
         run: yarn lint
@@ -130,7 +126,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: packages/*/dist
 
       - name: Test
         run: yarn test
@@ -161,7 +156,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: packages/*/dist
 
       - name: Release
         run: yarn release
