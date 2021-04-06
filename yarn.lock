@@ -720,13 +720,6 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@miyauci/data-table-core@1.0.0-beta.*":
-  version "1.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@miyauci/data-table-core/-/data-table-core-1.0.0-beta.7.tgz#7c84d1d7c7d2cc1f71280d99cf888bf719b1c8f5"
-  integrity sha512-f4GvsQjEXHK/S8U59n1XTTwAWZE2s12wwc0wSLu/Sy3a7vFNAys3H357i1vpqDs8UrSgndT32Qda+Ga9DiuBZQ==
-  dependencies:
-    rambda "^6.7.0"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -9747,7 +9740,7 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-unzipper@latest:
+unzipper@0.10.11:
   version "0.10.11"
   resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.10.11.tgz#0b4991446472cbdb92ee7403909f26c2419c782e"
   integrity sha512-+BrAq2oFqWod5IESRjL3S8baohbevGcVA+teAIOYWM3pDVdseogqbzhhvvmiyQrUNKFUnDMtELW3X8ykbyDCJw==
@@ -9958,12 +9951,12 @@ vue-template-es2015-compiler@^1.9.1:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-tsc@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-0.0.8.tgz#2b2912d0c11e0d7bfd8d4ea89883c5acd722ac39"
-  integrity sha512-LY3SqDGAvB+x2iLqxZSGCw5tdR0tFQ7QhJ/J0+HQ7FZ5pED9tr4wxBMNeUPliLgIDbi5yFLM86Q+I93DYA0Y6g==
+vue-tsc@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-0.0.20.tgz#698ff402e71a87c69e6583f734278e583a2c028b"
+  integrity sha512-Q7a7fQlB/L387kQQP6gCBZC85hLa2nqza3AJooE06uJzbtQaSC17WfaWdt/Tj+Vna/KK3/fkGWMdMiifAv1cHA==
   dependencies:
-    unzipper latest
+    unzipper "0.10.11"
 
 vue@^3.0.5:
   version "3.0.11"
