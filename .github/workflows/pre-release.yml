@@ -101,6 +101,9 @@ jobs:
             **/dist
             !node_modules
 
+      - name: Build
+        run: yarn build
+
       - name: Lint
         run: yarn lint
 
@@ -134,6 +137,9 @@ jobs:
           path: |
             **/dist
             !node_modules
+
+      - name: Build
+        run: yarn build
 
       - name: Test
         run: yarn test
