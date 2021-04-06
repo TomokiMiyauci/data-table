@@ -1,3 +1,14 @@
+# [v1.1.0-beta.1](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/data-table-core@1.0.0...@miyauci/data-table-core@1.1.0-beta.1) (2021-04-06)
+
+## ✨ New Features
+- [`6a4fa36`](https://github.com/TomokiMiyauci/data-table/commit/6a4fa36)  (react) Add useFilter 
+
+
+
+### Dependencies
+
+* **@miyauci/data-table-core:** upgraded to 1.1.0-beta.1
+
 # v1.0.0 (2021-04-04)
 
 ## ✨ New Features
