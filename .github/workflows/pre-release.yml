@@ -67,7 +67,7 @@ jobs:
         with:
           name: dist
           path: |
-            dist/**/*
+            **/dist/**/*
             !node_modules
 
   lint:
@@ -98,7 +98,7 @@ jobs:
         with:
           name: dist
           path: |
-            dist/**/*
+            **/dist/**/*
             !node_modules
 
       - name: Lint
@@ -132,7 +132,7 @@ jobs:
         with:
           name: dist
           path: |
-            dist/**/*
+            **/dist/**/*
             !node_modules
 
       - name: Test
