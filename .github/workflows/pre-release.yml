@@ -101,6 +101,9 @@ jobs:
             **/dist/**/*
             !node_modules
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - name: Lint
         run: yarn lint
 
