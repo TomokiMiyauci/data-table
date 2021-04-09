@@ -40,7 +40,7 @@ jobs:
         run: yarn build
 
       - name: reinstall
-        run: yarn install --check-files
+        run: yarn install --check-files --frozen-lockfile --non-interactive
 
       - name: Cache pre-build node_modules
         id: pre_build_node_modules_cache_id
