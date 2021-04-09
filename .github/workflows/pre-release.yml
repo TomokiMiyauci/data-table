@@ -36,10 +36,10 @@ jobs:
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn --check-files --frozen-lockfile --non-interactive
 
-      - name: pre-build
+      - name: Pre build
         run: yarn build
 
-      - name: reinstall
+      - name: Reinstall
         run: yarn install --check-files --frozen-lockfile --non-interactive
 
       - name: Cache pre-build node_modules
@@ -56,45 +56,8 @@ jobs:
           path: '**/dist'
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
-  build:
-    needs: [setup]
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
-
-    steps:
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Restore pre-build node_modules
-        id: pre_build_node_modules_cache_id
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-pre-build-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - name: Restore pre-build
-        id: dist_cache_id
-        uses: actions/cache@v2
-        with:
-          path: '**/dist'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - name: debug
-        run: |
-          ls -a
-          ls -a packages/vue/
-          ls packages/vue/dist
-
   lint:
-    needs: [build]
+    needs: [setup]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -128,7 +91,7 @@ jobs:
         run: yarn lint
 
   test:
-    needs: [build]
+    needs: [setup]
     runs-on: ${{ matrix.os }}
 
     strategy:
