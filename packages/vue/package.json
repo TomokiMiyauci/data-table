@@ -16,11 +16,11 @@
     "cz": "yarn commit",
     "dev": "vite",
     "lint": "run-p lint:*",
-    "lint:tsc": "vue-tsc",
+    "lint:tsc": "vue-tsc --noEmit",
     "lint:style": "stylelint src/*",
     "build": "run-p build:*",
     "build:lib": "vite build",
-    "build:types": "tsc && tscpaths -p tsconfig.json -s src && yarn esno scripts/replace-vue-ext && yarn esno scripts/gen-vue-types",
+    "build:types": "tsc && tscpaths -p tsconfig.json -s src && yarn esno scripts/replace-vue-ext && yarn esno scripts/gen-vue-types && tscpaths -p tsconfig.json -s src",
     "test:unit": "jest",
     "test": "run-p test:*",
     "serve": "vite preview"

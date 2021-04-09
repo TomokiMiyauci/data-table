@@ -17,7 +17,7 @@
     "prepare": "husky install",
     "release": "multi-semantic-release --ignore-packages=examples/*,docs/* --deps.bump=satisfy",
     "lint": "wsrun -m lint",
-    "build": "wsrun -t -r -m build",
+    "build": "wsrun -t -p @miyauci/* -m build",
     "test": "wsrun -m test"
   },
   "devDependencies": {
