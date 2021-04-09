@@ -192,7 +192,7 @@ jobs:
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
       - name: Release
-        if: steps.dist_cache_id.outputs.cache-hit = 'true'
+        if: steps.dist_cache_id.outputs.cache-hit == 'true'
         run: yarn release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
