@@ -1,4 +1,6 @@
 import typescript from 'rollup-plugin-typescript2'
+import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 import { main, module } from './package.json'
 
 /** @type {import('rollup').RollupOptions} */
@@ -17,8 +19,16 @@ const options = {
       sourcemap: true
     }
   ],
-  external: ['rambda'],
-  plugins: [typescript()]
+  plugins: [
+    typescript({
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: false
+        }
+      }
+    }),
+    nodeResolve(),
+    commonjs()
+  ]
 }
-
 export default options
