@@ -26,7 +26,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@miyauci/data-table-core": "./packages/core",
     "rambda": "^6.7.0"
   },
   "peerDependencies": {
@@ -43,15 +42,13 @@
     "eslint-plugin-vue": "^7.8.0",
     "fs-extra": "^9.1.0",
     "ky": "^0.27.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.30.0",
     "vite": "^2.1.3",
     "vite-plugin-components": "^0.8.3",
     "vite-plugin-icons": "^0.4.0",
     "vite-plugin-windicss": "^0.11.0",
     "vue-dts-gen": "^0.2.3",
-    "vue-tsc": "^0.0.8"
+    "vue-tsc": "^0.0.8",
+    "@miyauci/data-table-core": "./packages/core"
   },
   "files": [
     "dist"
