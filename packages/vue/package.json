@@ -47,7 +47,7 @@
     "vite-plugin-icons": "^0.4.0",
     "vite-plugin-windicss": "^0.11.0",
     "vue-dts-gen": "^0.2.3",
-    "vue-tsc": "^0.0.8"
+    "vue-tsc": "^0.0.21"
   },
   "files": [
     "dist"
