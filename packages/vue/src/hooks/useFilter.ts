@@ -4,9 +4,9 @@ import {
   lowerCase,
   toStringOrNumber
 } from '@miyauci/data-table-core'
-import { computed, ComputedRef, Ref, ref } from 'vue'
-
-type Options = {
+import type { ComputedRef, Ref } from 'vue'
+import { computed, ref } from 'vue'
+type FilterOptions = {
   headers: ComputedRef<Header[]>
   items: ComputedRef<Item[]>
 }
@@ -82,7 +82,7 @@ const getFilteredItems = ({
 const useFilter = ({
   items,
   headers
-}: Options): {
+}: FilterOptions): {
   items: ComputedRef<Item[]>
   filter: (search: string | number) => void
 } => {
