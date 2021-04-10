@@ -1,3 +1,9 @@
+# [v1.1.1](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/vue-data-table@1.1.0...@miyauci/vue-data-table@1.1.1) (2021-04-10)
+
+## 🐛 Bug Fixes
+- [`9783240`](https://github.com/TomokiMiyauci/data-table/commit/9783240)  (react) Fix output types 
+- [`5b53c5a`](https://github.com/TomokiMiyauci/data-table/commit/5b53c5a)   Change using internal shared module
+
 # [v1.1.1-beta.1](https://github.com/TomokiMiyauci/data-table/compare/@miyauci/vue-data-table@1.1.0...@miyauci/vue-data-table@1.1.1-beta.1) (2021-04-10)
 
 ## 🐛 Bug Fixes
