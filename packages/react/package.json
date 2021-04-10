@@ -1,6 +1,6 @@
 {
   "name": "@miyauci/react-data-table",
-  "version": "1.1.0",
+  "version": "1.1.0-beta.1",
   "main": "dist/react-data-table.umd.js",
   "module": "dist/react-data-table.es.js",
   "types": "dist/index.d.ts",
@@ -18,12 +18,11 @@
     "lint:tsc": "tsc",
     "build": "yarn build:lib && yarn build:types",
     "build:lib": "vite build",
-    "build:types": "tsc src/index.ts --jsx react --lib ESNEXT,DOM --outDir dist --types vite/client --emitDeclarationOnly -d --esModuleInterop",
+    "build:types": "dts-bundle-generator --no-banner --external-imports=react -o dist/index.d.ts src/index.ts",
     "serve": "vite preview",
     "test": "echo test"
   },
-  "dependencies": {
-    "@miyauci/data-table-core": "1.1.0",
+  "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },

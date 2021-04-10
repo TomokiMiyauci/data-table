@@ -1,31 +1,13 @@
 <template>
   <table :class="table">
-    <thead :class="thead">
-      <tr>
-        <th
-          v-for="{ text, value } in headers"
-          :key="value"
-          :class="th"
-          @click="onClick(value)"
-        >
-          <span class="cursor-auto" @click.stop>{{ text }}</span>
-          <button
-            class="rounded-full w-6 h-6 cursor-pointer p-1 opacity-50 group-hover:opacity-100"
-            :class="[
-              getState(value) ? 'border-blue-500 opacity-100 text-blue-500' : ''
-            ]"
-            @click="onClick(value)"
-          >
-            <div
-              :class="[getState(value) === 'DESC' ? 'rotate-180' : '']"
-              class="transform transition duration-500"
-            >
-              <carbon-arrow-down />
-            </div>
-          </button>
-        </th>
-      </tr>
-    </thead>
+    <data-table-header
+      :headers="headers"
+      :thead="thead"
+      :th="th"
+      :get-state="getState"
+      @click:row="onClick"
+    />
+
     <thead v-if="loading">
       <tr>
         <th class="p-0" :colspan="colspan">
@@ -47,15 +29,15 @@
       </template>
     </data-table-state>
 
-    <tbody :class="tbody">
-      <tr v-for="(item, index) in pagedItems" :key="index" :class="tr">
-        <td v-for="{ value } in headers" :key="value" :class="td">
-          {{ item[value] }}
-        </td>
-      </tr>
-    </tbody>
+    <data-table-body
+      :headers="headers"
+      :items="pagedItems"
+      :tbody="tbody"
+      :tr="tr"
+      :td="td"
+    />
 
-    <tfoot v-if="pagination" class="bg-gray-50">
+    <tfoot class="bg-gray-50">
       <tr>
         <th class="py-2 px-4" :colspan="colspan">
           <div class="flex text-left">
@@ -110,65 +92,110 @@
   </table>
 </template>
 
-<script setup lang="ts">
-import type { Header, Item } from '@miyauci/data-table-core'
+<script lang="ts">
+import type { Header, Item } from '@share'
 import type { PropType } from 'vue'
-import { computed, defineProps, toRefs, watch } from 'vue'
+import { defineComponent } from 'vue'
 
+import DataTableBody from '@/components/DataTableBody.vue'
+import DataTableHeader from '@/components/DataTableHeader.vue'
 import DataTableState from '@/components/DataTableState.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
-import type { NumberOrAll, Pagination } from '@/hooks'
-import { useFilter, usePagination, useSort } from '@/hooks'
-import { getTableState } from '@/utils'
+import { LOADING_TEXT, NO_DATA_TEXT, NO_SEARCH_RESULT_TEXT } from '@/constants'
+import type { NumberOrAll } from '@/hooks'
+import { useProps } from '@/hooks/useProps'
 
-const props = defineProps({
-  headers: {
-    type: Array as PropType<Header[]>,
-    default: () => []
+export default defineComponent({
+  components: {
+    DataTableState,
+    DataTableHeader,
+    DataTableBody,
+    ProgressBar
   },
-  items: {
-    type: Array as PropType<Item[]>,
-    default: () => []
-  },
-  search: {
-    type: [String, Number],
-    default: ''
-  },
-  pagination: {
-    type: [Array, Boolean] as PropType<NumberOrAll[] | boolean>,
-    default: () => []
+  props: {
+    headers: {
+      type: Array as PropType<Header[]>,
+      default: () => []
+    },
+    items: {
+      type: Array as PropType<Item[]>,
+      default: () => []
+    },
+    search: {
+      type: [String, Number],
+      default: ''
+    },
+    pagination: {
+      type: [Array, Boolean] as PropType<NumberOrAll[] | boolean>,
+      default: () => []
+    },
+
+    loading: {
+      type: Boolean,
+      default: false
+    },
+
+    loadingText: {
+      type: String,
+      default: LOADING_TEXT
+    },
+
+    noDataText: {
+      type: String,
+      default: NO_DATA_TEXT
+    },
+
+    noSearchResultText: {
+      type: String,
+      default: NO_SEARCH_RESULT_TEXT
+    }
   },
 
-  loading: {
-    type: Boolean,
-    default: false
-  },
+  setup(props) {
+    const {
+      colspan,
+      items: pagedItems,
+      sort,
+      getState,
+      page,
+      pages,
+      turnPage,
+      canPrev,
+      canNext,
+      rows,
+      row,
+      isAllItemsInPage,
+      tableState
+    } = useProps(props)
 
-  loadingText: {
-    type: String,
-    default: 'Loading'
-  },
+    const onInput = ({ target }: Event): void =>
+      turnPage({ type: 'TO', to: Number((target as HTMLInputElement).value) })
+    const onClick = (val: string | number): void => sort(val)
 
-  noDataText: {
-    type: String,
-    default: 'No data available'
-  },
-
-  noSearchResultText: {
-    type: String,
-    default: 'No matching records found'
+    return {
+      onInput,
+      onClick,
+      colspan,
+      pagedItems,
+      getState,
+      page,
+      pages,
+      canPrev,
+      canNext,
+      rows,
+      row,
+      turnPage,
+      isAllItemsInPage,
+      tableState,
+      table,
+      thead,
+      th,
+      tbody,
+      tr,
+      td
+    }
   }
 })
-
-const tableState = computed(() =>
-  getTableState({
-    loading: props.loading,
-    originItems: props.items,
-    actualItems: pagedItems.value
-  })
-)
-
-const colspan = computed<number>(() => props.headers.length)
 
 const table = 'min-w-full divide-y divide-gray-200'
 const thead = 'bg-gray-50 whitespace-nowrap uppercase'
@@ -177,33 +204,6 @@ const th =
 const tbody = 'bg-white divide-y divide-gray-200'
 const tr = 'transition text-gray-600 hoverLbg-gray-100 hover:shadow-lg'
 const td = 'px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-4 whitespace-nowrap'
-const { headers, search } = toRefs(props)
-const { items: filteredItems, filter } = useFilter({
-  items: computed(() => props.items),
-  headers: computed(() => props.headers)
-})
-watch(search, (now) => filter(now))
-
-const { items: sortedItems, sort, getState } = useSort(filteredItems)
-
-const {
-  items: pagedItems,
-  pages,
-  turnPage,
-  page,
-  canNext,
-  canPrev,
-  rows,
-  row,
-  isAllItemsInPage
-} =
-  typeof props.pagination === 'boolean'
-    ? ({ items: sortedItems } as Pagination)
-    : usePagination(sortedItems, props.pagination)
-
-const onInput = ({ target }: any) =>
-  turnPage({ type: 'TO', to: Number(target.value) })
-const onClick = (val: string | number) => sort(val)
 </script>
 
 <style scoped>

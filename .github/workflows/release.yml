@@ -3,7 +3,8 @@ name: release
 on:
   push:
     branches:
-      - main
+      - beta
+      - meta
     paths-ignore:
       - examples/**
       - docs/**
@@ -36,6 +37,40 @@ jobs:
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn --check-files --frozen-lockfile --non-interactive
 
+  build:
+    needs: [setup]
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+
+    steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+
+      - name: Cache dist
+        id: dist_cache_id
+        uses: actions/cache@v2
+        with:
+          path: '**/dist'
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist }}
+
+      - name: Build
+        run: yarn build
+
   lint:
     needs: [setup]
     runs-on: ${{ matrix.os }}
@@ -63,7 +98,7 @@ jobs:
       - name: Lint
         run: yarn lint
 
-  build:
+  test:
     needs: [setup]
     runs-on: ${{ matrix.os }}
 
@@ -87,52 +122,11 @@ jobs:
           path: '**/node_modules'
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
-      - name: Build
-        run: yarn build
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: |
-            **/dist
-            !node_modules
-
-  test:
-    needs: [lint, build]
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
-
-    steps:
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Restore node_modules
-        id: node_modules_cache_id
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: |
-            **/dist
-            !node_modules
-
       - name: Test
         run: yarn test
 
   release:
-    needs: [test]
+    needs: [lint, test, build]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -154,14 +148,15 @@ jobs:
           path: '**/node_modules'
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
-      - uses: actions/download-artifact@v2
+      - name: Restore dist
+        id: dist_cache_id
+        uses: actions/cache@v2
         with:
-          name: dist
-          path: |
-            **/dist
-            !node_modules
+          path: '**/dist'
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist }}
 
-      - name: release
+      - name: Release
+        if: steps.dist_cache_id.outputs.cache-hit == 'true'
         run: yarn release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

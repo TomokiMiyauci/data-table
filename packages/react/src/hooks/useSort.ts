@@ -1,4 +1,4 @@
-import type { Item } from '@miyauci/data-table-core'
+import type { Item } from '@share'
 
 const useSort = (items: Item[]) => {}
 

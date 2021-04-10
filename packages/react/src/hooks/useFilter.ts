@@ -1,5 +1,5 @@
-import { Item, Header, toStringOrNumber } from '@miyauci/data-table-core'
-import { isUndefinedOrTrue } from '@miyauci/data-table-core'
+import { Item, Header, toStringOrNumber } from '@share'
+import { isUndefinedOrTrue } from '@share'
 import { useState } from 'react'
 
 const lowerCase = (val: string): string => val.toLowerCase()

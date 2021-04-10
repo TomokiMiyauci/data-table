@@ -1,3 +1,6 @@
 export const LOADING = 'LOADING'
 export const NO_DATA = 'NO_DATA'
 export const NO_SEARCH_RESULT = 'NO_SEARCH_RESULT'
+export const LOADING_TEXT = 'Loading'
+export const NO_DATA_TEXT = 'No data available'
+export const NO_SEARCH_RESULT_TEXT = 'No matching records found'

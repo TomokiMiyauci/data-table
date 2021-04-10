@@ -6,8 +6,7 @@
     "strict": true,
     "jsx": "preserve",
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "sourceMap": true,
     "outDir": "dist",
     "resolveJsonModule": true,
@@ -16,7 +15,8 @@
     "types": ["vite/client", "./src/shims-vue"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@share": ["../core/src/index"]
     }
   },
   "files": ["src/index.ts"],

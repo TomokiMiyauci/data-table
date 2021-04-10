@@ -1,6 +1,7 @@
 {
   "name": "@miyauci/data-table-core",
-  "version": "1.1.0",
+  "version": "1.1.0-beta.1",
+  "private": true,
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
@@ -16,20 +17,19 @@
     "cz": "yarn commit",
     "lint:script": "eslint src/*",
     "lint": "yarn lint:script",
-    "build": "rollup -c rollup.config.ts",
+    "build": "run-p build:*",
+    "build:lib": "rollup -c rollup.config.ts",
+    "build:types": "dts-bundle-generator --no-banner --external-inlines=rambda -o dist/index.d.ts src/index.ts",
     "test": "echo test"
   },
   "devDependencies": {
+    "rambda": "^6.7.0",
     "rollup": "^2.43.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.30.0"
   },
   "files": [
     "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "rambda": "^6.7.0"
-  }
+  ]
 }

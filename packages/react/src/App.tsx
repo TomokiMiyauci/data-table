@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useState } from 'react'
 import DataTable from './components/DataTable'
-import type { Item, Header } from '@miyauci/data-table-core'
+import type { Item, Header } from '@share'
 
 const App: FC = () => {
   const headers: Header[] = [
