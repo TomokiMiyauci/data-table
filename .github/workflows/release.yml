@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - beta
-      - meta
+      - main
     paths-ignore:
       - examples/**
       - docs/**
