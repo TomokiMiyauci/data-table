@@ -20,7 +20,7 @@
     "lint:style": "stylelint src/*",
     "build": "run-p build:*",
     "build:lib": "vite build",
-    "build:types": "dts-bundle-generator --no-banner --external-inlines=@miyauci/data-table-core -o dist/index.d.ts src/index.ts",
+    "build:types": "dts-bundle-generator --no-banner -o dist/index.d.ts src/index.ts",
     "test:unit": "jest",
     "test": "run-p test:*",
     "serve": "vite preview"
@@ -47,8 +47,7 @@
     "vite-plugin-icons": "^0.4.0",
     "vite-plugin-windicss": "^0.11.0",
     "vue-dts-gen": "^0.2.3",
-    "vue-tsc": "^0.0.8",
-    "@miyauci/data-table-core": "./packages/core"
+    "vue-tsc": "^0.0.8"
   },
   "files": [
     "dist"

@@ -1,9 +1,5 @@
-import type { Header, Item, StringOrNumber } from '@miyauci/data-table-core'
-import {
-  isUndefinedOrTrue,
-  lowerCase,
-  toStringOrNumber
-} from '@miyauci/data-table-core'
+import type { Header, Item, StringOrNumber } from '@share'
+import { isUndefinedOrTrue, lowerCase, toStringOrNumber } from '@share'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, ref } from 'vue'
 type FilterOptions = {

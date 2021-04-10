@@ -1,4 +1,4 @@
-import type { Item } from '@miyauci/data-table-core'
+import type { Item } from '@share'
 import { ComputedRef, Ref } from 'vue'
 
 export type NumberOrAll = number | 'ALL'

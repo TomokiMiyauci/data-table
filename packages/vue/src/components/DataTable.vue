@@ -93,7 +93,7 @@
 </template>
 
 <script lang="ts">
-import type { Header, Item } from '@miyauci/data-table-core'
+import type { Header, Item } from '@share'
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 

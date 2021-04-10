@@ -1,4 +1,4 @@
-import type { Item } from '@miyauci/data-table-core'
+import type { Item } from '@share'
 
 import { LOADING, NO_DATA, NO_SEARCH_RESULT } from '@/constants'
 import type { TableState } from '@/types'

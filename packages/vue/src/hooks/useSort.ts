@@ -1,5 +1,5 @@
-import type { Item, Order, StringOrNumber } from '@miyauci/data-table-core'
-import { objectOrPrimitive } from '@miyauci/data-table-core'
+import type { Item, Order, StringOrNumber } from '@share'
+import { objectOrPrimitive } from '@share'
 import { Ord, reverse, sortBy as _sortBy } from 'rambda'
 import { computed, ComputedRef, ref } from 'vue'
 

@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Header } from '@miyauci/data-table-core'
+import type { Header } from '@share'
 import type { PropType } from 'vue'
 import { defineEmit, defineProps } from 'vue'
 defineEmit(['click:row'])

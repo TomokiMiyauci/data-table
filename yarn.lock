@@ -707,9 +707,6 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@miyauci/data-table-core@./packages/core":
-  version "1.1.0-beta.1"
-
 "@miyauci/data-table-core@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@miyauci/data-table-core/-/data-table-core-1.1.0.tgz#77d4978593f55a3632783bbdd590f8f4341a38e0"
@@ -729,7 +726,6 @@
 "@miyauci/vue-data-table@./packages/vue":
   version "1.1.0-beta.1"
   dependencies:
-    "@miyauci/data-table-core" "./packages/core"
     rambda "^6.7.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":

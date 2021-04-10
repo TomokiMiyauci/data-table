@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import type { Header, Item } from '@miyauci/data-table-core'
+import type { Header, Item } from '@share'
 import { useFilter } from '../hooks'
 
 const DataTable: FC<{

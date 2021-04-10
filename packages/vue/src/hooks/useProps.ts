@@ -1,4 +1,4 @@
-import type { Header, Item } from '@miyauci/data-table-core'
+import type { Header, Item } from '@share'
 import { computed, ComputedRef, watch } from 'vue'
 
 import type { NumberOrAll, Pagination } from '@/hooks'

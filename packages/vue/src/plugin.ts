@@ -1,4 +1,4 @@
-import { COMPONENT_NAME } from '@miyauci/data-table-core'
+import { COMPONENT_NAME } from '@share'
 import { Plugin } from 'vue'
 
 import DataTable from '@/components/DataTable.vue'

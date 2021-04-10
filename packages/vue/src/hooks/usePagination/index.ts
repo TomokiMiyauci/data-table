@@ -1,4 +1,4 @@
-import type { Item } from '@miyauci/data-table-core'
+import type { Item } from '@share'
 import { computed, ComputedRef, watch } from 'vue'
 
 import { NumberOrAll, Pagination } from '@/hooks/usePagination/types'
