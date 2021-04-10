@@ -37,25 +37,39 @@ jobs:
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn --check-files --frozen-lockfile --non-interactive
 
-      - name: Pre build
-        run: yarn build
+  build:
+    needs: [setup]
+    runs-on: ${{ matrix.os }}
 
-      - name: Reinstall
-        run: yarn install --check-files --frozen-lockfile --non-interactive
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
 
-      - name: Cache pre-build node_modules
-        id: pre_build_node_modules_cache_id
+    steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore node_modules
+        id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-pre-build-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
-      - name: Cache pre-build dist
+      - name: Cache dist
         id: dist_cache_id
         uses: actions/cache@v2
         with:
           path: '**/dist'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist }}
+
+      - name: Build
+        run: yarn build
 
   lint:
     needs: [setup]
@@ -74,19 +88,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore pre-build node_modules
-        id: pre_build_node_modules_cache_id
+      - name: Restore node_modules
+        id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-pre-build-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - name: Restore pre-build
-        id: dist_cache_id
-        uses: actions/cache@v2
-        with:
-          path: '**/dist'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
       - name: Lint
         run: yarn lint
@@ -108,25 +115,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore pre-build node_modules
-        id: pre_build_node_modules_cache_id
+      - name: Restore node_modules
+        id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-pre-build-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - name: Restore pre-build
-        id: dist_cache_id
-        uses: actions/cache@v2
-        with:
-          path: '**/dist'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
       - name: Test
         run: yarn test
 
   release:
-    needs: [lint, test]
+    needs: [lint, test, build]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -141,19 +141,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore pre-build node_modules
-        id: pre_build_node_modules_cache_id
+      - name: Restore node_modules
+        id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-pre-build-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
-      - name: Restore pre-build
+      - name: Restore dist
         id: dist_cache_id
         uses: actions/cache@v2
         with:
           path: '**/dist'
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-dist }}
 
       - name: Release
         if: steps.dist_cache_id.outputs.cache-hit == 'true'
